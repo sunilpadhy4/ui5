@@ -1,0 +1,112 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:f="sap.ui.layout.form" xmlns:table="sap.ui.table" xmlns:html="http://www.w3.org/1999/xhtml" controllerName="oft.controller.Main">
+		<Page title="Welcome to UI5 Models">
+			<table:Table rows="{/empTab/row}" id="idTable"
+			visibleRowCount="5" selectionMode="Single"
+			rowSelectionChange="onRowSelect">
+				<table:columns>
+					<table:Column>
+						<table:label>
+							<Label text="{i18n>XLBL_EMPNO}"/>
+						</table:label>
+						<table:template>
+							<Text text="{empNo}"/>
+						</table:template>
+					</table:Column>
+					
+					<table:Column>
+						<table:label>
+							<Label text="{i18n>XLBL_EMPNAME}"/>
+						</table:label>
+						<table:template>
+							<Input value="{
+								path: 'empName',
+								formatter: '.formatter.getMeName'
+							}"/>
+						</table:template>
+					</table:Column>
+					
+					<table:Column>
+						<table:label>
+							<Label text="{i18n>XLBL_SAL}"/>
+						</table:label>
+						<table:template>
+							<Text text="{
+								parts: [{ path : 'salary'},{ path : 'currency'}],
+								formatter: '.formatter.getFormattedCurrency'
+							
+							}"/>
+						</table:template>
+					</table:Column>
+					
+					<!--<table:Column>
+						<table:label>
+							<Label text="Currency"/>
+						</table:label>
+						<table:template>
+							<Text text="{currency}"/>
+						</table:template>
+					</table:Column>-->
+					
+					<table:Column>
+						<table:label>
+							<Label text="{i18n>XLBL_SMOKER}"/>
+						</table:label>
+						<table:template>
+							<CheckBox selected="{= ${smoker} === 'false' ? false : true}"></CheckBox>
+						</table:template>
+					</table:Column>
+					
+					<table:Column>
+						<table:label>
+							<Label text="{i18n>XLBL_GEN}"/>
+						</table:label>
+						<table:template>
+							<Image width="25px" height="25px" src="{gender}"></Image>
+						</table:template>
+					</table:Column>
+					
+					<table:Column>
+						<table:label>
+							<Label text="{i18n>XLBL_MSTAT}"/>
+						</table:label>
+						<table:template>
+							<Select selectedKey="{mStat}">
+								<items>
+									<core:Item key="M" text="Married"></core:Item>
+									<core:Item key="S" text="Single"></core:Item>
+								</items>
+							</Select>
+						</table:template>
+					</table:Column>
+					
+				</table:columns>
+			</table:Table>
+			
+			<f:SimpleForm id="idSimple" editable="true">
+				<Label text="{i18n>XLBL_EMPNO}"/>
+				<Input value="{empNo}"/>
+				<Label text="{i18n>XLBL_EMPNAME}"/>
+				<Input value="{
+						path: 'empName',
+						formatter: '.formatter.getMeName'
+				}" 
+				       />
+				<Label text="{i18n>XLBL_SAL}"/>
+				<Input id="idSal" value="{salary}" />
+				<Label text="{i18n>XLBL_CURR}"/>
+				<Input id="idCurr" value="{currency}" />
+			</f:SimpleForm>
+
+			<Button text="{i18n>XBUT_MAGIC}" press="onMagic"/>
+			<Button text="{i18n>XBUT_FLIP}" press="onFlip"/>
+			<Button text="{i18n>XBUT_INS}" press="onInsert"/>
+		<content/>
+		<footer>
+		    <Toolbar width="100%" id="__toolbar1">
+		    <content>
+		        <Button text="Zangoora" width="100px" id="__button3" press="onZangoora"/>
+		    </content>
+		    </Toolbar>
+		</footer>
+		</Page>
+</mvc:View>
